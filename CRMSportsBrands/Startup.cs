@@ -1,3 +1,4 @@
+using CRMSportsBrands.Middlewares;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -37,18 +38,17 @@ namespace CRMSportsBrands
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            if (env.IsDevelopment())
-            {
-                app.UseDeveloperExceptionPage();
-                app.UseSwagger();
-                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "CRMSportsBrands v1"));
-            }
-
-            app.UseHttpsRedirection();
+            app.UseDemoPracticeExceptionMiddleware();
+            //app.UseHttpsRedirection();
 
             app.UseRouting();
+            //app.UseDeveloperExceptionPage();
 
-            app.UseAuthorization();
+            app.UseAuthenticationMiddleware();
+
+            app.UseSwagger();
+            app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "CRMSportsBrands v1"));
+            //app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {
