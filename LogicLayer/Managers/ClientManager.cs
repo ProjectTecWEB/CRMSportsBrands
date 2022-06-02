@@ -33,13 +33,30 @@ namespace LogicLayer.Managers
                     Ranking = client.Ranking,
                     IdClient =client.IdClient
                     
-                }); ;
+                }); 
             }
 
             return mappedClients;
         }
-        
+        public Client PostClient(Client client)
+        {
 
+            _uow.ClientRepository.CreateClient(client);
+            _uow.Save();
+            return client;
+        }
+        public Client UpdateClient(Client client)
+        {
+            _uow.ClientRepository.UpdateClient(client);
+            _uow.Save();
+            return client;
+        }
+        public Client DeleteClient(Client client)
+        {
+            _uow.ClientRepository.DeleteClient(client);
+            _uow.Save();
+            return client;
+        }
     }
 }
 
