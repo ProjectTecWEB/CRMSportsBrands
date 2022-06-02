@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DBLayer.Models
 {
-    public class Clients
+    public class Client: Entity
     {
         public string fullName { get; set; }
         public int Id { get; set; }
