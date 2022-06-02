@@ -15,13 +15,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "04-Services", "04-Services"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "05-Authorization", "05-Authorization", "{1CA072D0-A139-462B-8F52-2FB4ECF0D476}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AuthorizationLayer", "AuthorizationLayer\AuthorizationLayer.csproj", "{A25F84C5-C597-4D00-A41F-4B43366A7046}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AuthorizationLayer", "AuthorizationLayer\AuthorizationLayer.csproj", "{A25F84C5-C597-4D00-A41F-4B43366A7046}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LogicLayer", "LogicLayer\LogicLayer.csproj", "{D8D1BBE7-8BA3-43E3-9C08-5442E48E784D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LogicLayer", "LogicLayer\LogicLayer.csproj", "{D8D1BBE7-8BA3-43E3-9C08-5442E48E784D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DBLayer", "DBLayer\DBLayer.csproj", "{F021E763-021D-4212-B9C5-F9756F052DFA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DBLayer", "DBLayer\DBLayer.csproj", "{F021E763-021D-4212-B9C5-F9756F052DFA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServicesLayer", "ServicesLayer\ServicesLayer.csproj", "{F71E70D5-DDBA-4126-A578-DD3419537FCF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ServicesLayer", "ServicesLayer\ServicesLayer.csproj", "{F71E70D5-DDBA-4126-A578-DD3419537FCF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
