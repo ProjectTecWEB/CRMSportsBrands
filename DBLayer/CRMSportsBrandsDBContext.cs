@@ -23,7 +23,8 @@ namespace DBLayer
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             string connectionString = _configuration.GetSection("Database").GetSection("ConnectionString").Value;
-            optionsBuilder.UseSqlServer(connectionString);
+            optionsBuilder.UseSqlServer(connectionString,
+            DbContextOptionsBuilder =>DbContextOptionsBuilder.EnableRetryOnFailure());
         }
     }
 }

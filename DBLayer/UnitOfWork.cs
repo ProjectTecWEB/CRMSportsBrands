@@ -13,7 +13,7 @@ namespace DBLayer
         private CRMSportsBrandsDBContext _context;
 
         private ClientRepository _clientRepository;
-        private AddressRepository _addressRepository;
+        
 
         public ClientRepository ClientRepository
         {
@@ -22,19 +22,13 @@ namespace DBLayer
                 return _clientRepository;
             }
         }
-        public AddressRepository addressRepository
-        {
-            get
-            {
-                return _addressRepository;
-            }
-        }
+        
 
         public UnitOfWork(CRMSportsBrandsDBContext context)
         {
             _context = context;
             _clientRepository = new ClientRepository(_context);
-            _addressRepository = new AddressRepository(_context);
+            
         }
         public void BeginTransaction()
         {
