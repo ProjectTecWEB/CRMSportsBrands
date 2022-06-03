@@ -1,3 +1,16 @@
+
+# Created by https://www.toptal.com/developers/gitignore/api/dotnetcore,windows,visualstudio
+# Edit at https://www.toptal.com/developers/gitignore?templates=dotnetcore,windows,visualstudio
+
+### DotnetCore ###
+# .NET Core build folders
+bin/
+obj/
+
+# Common node modules locations
+/node_modules
+/wwwroot/node_modules
+
 ### Windows ###
 # Windows thumbnail cache files
 Thumbs.db
@@ -420,4 +433,4 @@ FodyWeavers.xsd
 ### VisualStudio Patch ###
 # Additional files built by Visual Studio
 
-# End of https://www.toptal.com/developers/gitignore/api/windows,visualstudio
+# End of https://www.toptal.com/developers/gitignore/api/dotnetcore,windows,visualstudio
