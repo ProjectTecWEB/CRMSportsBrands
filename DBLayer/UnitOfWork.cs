@@ -1,4 +1,4 @@
-﻿using Database;
+﻿using DBLayer;
 using DBLayer.Repositories;
 using System;
 using System.Collections.Generic;
@@ -10,9 +10,10 @@ namespace DBLayer
 {
     public class UnitOfWork
     {
-        private PracticeDbContext _context;
+        private CRMSportsBrandsDBContext _context;
 
         private ClientRepository _clientRepository;
+        
 
         public ClientRepository ClientRepository
         {
@@ -21,11 +22,13 @@ namespace DBLayer
                 return _clientRepository;
             }
         }
+        
 
-        public UnitOfWork(PracticeDbContext context)
+        public UnitOfWork(CRMSportsBrandsDBContext context)
         {
             _context = context;
             _clientRepository = new ClientRepository(_context);
+            
         }
         public void BeginTransaction()
         {

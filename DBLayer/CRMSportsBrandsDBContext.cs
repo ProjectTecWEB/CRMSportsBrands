@@ -7,15 +7,15 @@ using DBLayer.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 
-namespace Database
+namespace DBLayer
 {
-    public class PracticeDbContext : DbContext
+    public class CRMSportsBrandsDBContext : DbContext
     {
         private IConfiguration _configuration;
 
         public DbSet<Client> Client { get; set; }
 
-        public PracticeDbContext(IConfiguration configuration)
+        public CRMSportsBrandsDBContext(IConfiguration configuration)
         {
             _configuration = configuration;
         }
@@ -23,7 +23,8 @@ namespace Database
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             string connectionString = _configuration.GetSection("Database").GetSection("ConnectionString").Value;
-            optionsBuilder.UseSqlServer(connectionString);
+            optionsBuilder.UseSqlServer(connectionString,
+            DbContextOptionsBuilder =>DbContextOptionsBuilder.EnableRetryOnFailure());
         }
     }
 }

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Database;
+using DBLayer;
 using DBLayer.Models;
 using Microsoft.EntityFrameworkCore;
 
@@ -11,9 +11,9 @@ namespace DBLayer.Repositories
 {
     public class ClientRepository
     {
-        private PracticeDbContext _context;
+        private CRMSportsBrandsDBContext _context;
 
-        public ClientRepository(PracticeDbContext context)
+        public ClientRepository(CRMSportsBrandsDBContext context)
         {
             _context = context;
         }
