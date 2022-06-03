@@ -1,4 +1,3 @@
-using Database;
 using DBLayer;
 using LogicLayer.Managers;
 using Microsoft.AspNetCore.Builder;
@@ -37,7 +36,7 @@ namespace CRMSportsBrands
         {
             services.AddTransient<ClientManager>();
             services.AddScoped<UnitOfWork>();
-            services.AddDbContext<PracticeDbContext>();
+            services.AddDbContext<CRMSportsBrandsDBContext>();
 
             services.AddControllers();
             services.AddSwaggerGen(c =>
