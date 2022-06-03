@@ -18,7 +18,7 @@ namespace Logic.Managers
 
         public List<Logic.Models.Clientes> GetClientes() 
         {
-            List<Database.Models.Clientes> userFromDB = _uow.ClienteRepository.GetAll().Result;
+            List<Database.Models.Clientes> userFromDB = _uow.UserRepository.GetAll().Result;
             List<Logic.Models.Clientes> mappedClientes = new List<Logic.Models.Clientes>();
 
             foreach (Database.Models.Clientes user in userFromDB)
@@ -40,9 +40,9 @@ namespace Logic.Managers
             return new Logic.Models.IdNumber()
             {
                 Id = idNumberFromService.id,
-                InvalidUsSsn = idNumberFromService.invalid_us_ssn,
-                Uid = idNumberFromService.uid,
-                ValidUsSsn = idNumberFromService.valid_us_ssn
+                InvalidUsSsn = idNumberFromService.firstname,
+                Uid = idNumberFromService.lastname,
+                ValidUsSsn = idNumberFromService.Adress
             };
         }
     }

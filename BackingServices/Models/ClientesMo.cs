@@ -7,8 +7,8 @@ namespace BackingServices.Models
     public class ClientesMo
     {
         public int id { get; set; }
-        public string uid { get; set; }
-        public string valid_us_ssn { get; set; }
-        public string invalid_us_ssn { get; set; }
+        public string firstname { get; set; }
+        public string lastname { get; set; }
+        public string Adress { get; set; }
     }
 }
