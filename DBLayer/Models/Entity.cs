@@ -8,6 +8,6 @@ namespace DBLayer.Models
 {
     public class Entity
     {
-        public Guid Id { get; set; }
+        public string IdClient { get; set; }
     }
 }
