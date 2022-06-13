@@ -5,17 +5,21 @@ using System.Text;
 using System.Threading.Tasks;
 using DBLayer;
 using DBLayer.Models;
+using ServicesLayer.Services;
 
 namespace LogicLayer.Managers
 {
     public class ClientManager
     {
         private UnitOfWork _uow;
+        private ExternalClientService _externalClientService;
+
         private string code;
-        public ClientManager(UnitOfWork uow)
+        public ClientManager(UnitOfWork uow, ExternalClientService externalClientService)
         {
             _uow = uow;
             code = "";
+            _externalClientService = externalClientService;
 
         }
 
@@ -124,6 +128,20 @@ namespace LogicLayer.Managers
                 Address = clientToDelete.Address,
                 PhoneNumber = clientToDelete.PhoneNumber,
                 Ranking = clientToDelete.Ranking
+            };
+        }
+
+        public LogicLayer.Models.ExternalClient GetExternalClient()
+        {
+            ServicesLayer.Models.ExternalClient externalClientFromService = _externalClientService.GetClientServiceAsync().Result;
+
+            return new LogicLayer.Models.ExternalClient()
+            {
+                Id = externalClientFromService.id,
+                FirstName = externalClientFromService.first_name,
+                LastName = externalClientFromService.last_name,
+                Address = externalClientFromService.street_name,
+                PhoneNumber = externalClientFromService.phone_number
             };
         }
     }

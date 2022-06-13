@@ -51,5 +51,12 @@ namespace CRMSportsBrands.Controllers
             return Ok(_clientManager.DeleteClient(client));
         }
 
+        [HttpGet]
+        [Route("external-client")]
+        public IActionResult GetExternalClient()
+        {
+            return Ok(_clientManager.GetExternalClient());
+        }
+
     }
 }

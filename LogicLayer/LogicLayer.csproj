@@ -6,6 +6,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\DBLayer\DBLayer.csproj" />
+    <ProjectReference Include="..\ServicesLayer\ServicesLayer.csproj" />
   </ItemGroup>
 
 </Project>

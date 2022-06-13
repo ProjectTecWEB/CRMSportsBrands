@@ -1,5 +1,6 @@
 using DBLayer;
 using LogicLayer.Managers;
+using ServicesLayer.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -35,6 +36,7 @@ namespace CRMSportsBrands
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddTransient<ClientManager>();
+            services.AddTransient<ExternalClientService>();
             services.AddScoped<UnitOfWork>();
             services.AddDbContext<CRMSportsBrandsDBContext>();
 
