@@ -29,7 +29,7 @@ namespace DBLayer.Repositories
             return client;
         }
 
-        public Client GetById(Guid id)
+        public Client GetById(string id)
         {
             return _context.Set<Client>().Find(id);
         }
