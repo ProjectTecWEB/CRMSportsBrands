@@ -9,7 +9,7 @@ using DBLayer.Models;
 
 namespace CRMSportsBrands.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("client-management")]
     [ApiController]
     public class ClientsController : ControllerBase
     {
@@ -26,13 +26,13 @@ namespace CRMSportsBrands.Controllers
         }
         [HttpPost]
         [Route("clients")]
-        public IActionResult PostClients(Client client)
+        public IActionResult PostClients([FromBody] LogicLayer.Models.Client client)
         {
             return Ok(_clientManager.PostClient(client));
         }
         [HttpPut]
         [Route("clients")]
-        public IActionResult UpdateClients(Client client)
+        public IActionResult UpdateClients([FromBody] LogicLayer.Models.Client client)
         {
             if (_clientManager.UpdateClient(client) != null)
             {
@@ -46,7 +46,7 @@ namespace CRMSportsBrands.Controllers
         }
         [HttpDelete]
         [Route("clients")]
-        public IActionResult DeleteClients(Client client)
+        public IActionResult DeleteClients([FromBody] LogicLayer.Models.Client client)
         {
             return Ok(_clientManager.DeleteClient(client));
         }
