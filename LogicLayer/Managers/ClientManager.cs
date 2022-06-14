@@ -32,6 +32,8 @@ namespace LogicLayer.Managers
             {
                 mappedClients.Add(new LogicLayer.Models.Client()
                 {
+                    IdClient = client.IdClient,
+                    firstId = client.firstId,
                     firstName = client.firstName,
                     secondName = client.secondName,
                     firstLastName = client.firstLastName,
@@ -40,7 +42,7 @@ namespace LogicLayer.Managers
                     Address = client.Address,
                     PhoneNumber = client.PhoneNumber,
                     Ranking = client.Ranking,
-                    IdClient = client.IdClient
+                    
 
                 });
             }
@@ -53,6 +55,7 @@ namespace LogicLayer.Managers
             DBLayer.Models.Client clientToCreate = new DBLayer.Models.Client()
             {
                 IdClient = genCode(client),
+                firstId = Guid.NewGuid(),
                 firstName = client.firstName,
                 secondName = client.secondName,
                 firstLastName = client.firstLastName,
@@ -67,12 +70,14 @@ namespace LogicLayer.Managers
             _uow.Save();
             return new LogicLayer.Models.Client()
             {
+                firstId = clientToCreate.firstId,
                 IdClient = clientToCreate.IdClient,
                 firstName = clientToCreate.firstName,
                 secondName = clientToCreate.secondName,
                 firstLastName = clientToCreate.firstLastName,
                 secondLastName = clientToCreate.secondLastName,
                 Id = clientToCreate.Id,
+               
                 Address = clientToCreate.Address,
                 PhoneNumber = clientToCreate.PhoneNumber,
                 Ranking = clientToCreate.Ranking
@@ -81,13 +86,18 @@ namespace LogicLayer.Managers
 
         private string genCode(LogicLayer.Models.Client client)
         {
-            code = client.firstName.Substring(0,1) + client.firstLastName.Substring(0,1)+ client.secondLastName.Substring(0,1)+"-"+client.Id.ToString();
+            code = client.firstName.Substring(0, 1) + client.firstLastName.Substring(0, 1) + client.secondLastName.Substring(0, 1) + "-" + client.Id.ToString();
+            return code;
+        }
+        private string genExCode(LogicLayer.Models.ExternalClient client)
+        {
+            code = client.FirstName.Substring(0, 1) + client.LastName.Substring(0, 1) + "-" + client.Id.ToString();
             return code;
         }
 
         public LogicLayer.Models.Client UpdateClient(LogicLayer.Models.Client client)
         {
-            DBLayer.Models.Client clientToUpdate = _uow.ClientRepository.GetById(client.IdClient);
+            DBLayer.Models.Client clientToUpdate = _uow.ClientRepository.GetById(client.firstId);
             clientToUpdate.firstName = client.firstName;
             clientToUpdate.secondName = client.secondName;
             clientToUpdate.firstLastName = client.firstLastName;
@@ -107,6 +117,7 @@ namespace LogicLayer.Managers
                 firstLastName = clientToUpdate.firstLastName,
                 secondLastName = clientToUpdate.secondLastName,
                 Id = clientToUpdate.Id,
+                firstId = clientToUpdate.firstId,
                 Address = clientToUpdate.Address,
                 PhoneNumber = clientToUpdate.PhoneNumber,
                 Ranking = clientToUpdate.Ranking
@@ -114,7 +125,7 @@ namespace LogicLayer.Managers
         }
         public LogicLayer.Models.Client DeleteClient(LogicLayer.Models.Client client)
         {
-            DBLayer.Models.Client clientToDelete = _uow.ClientRepository.GetById(client.IdClient);
+            DBLayer.Models.Client clientToDelete = _uow.ClientRepository.GetById(client.firstId);
             _uow.ClientRepository.DeleteClient(clientToDelete);
             _uow.Save();
             return new LogicLayer.Models.Client()
@@ -134,16 +145,28 @@ namespace LogicLayer.Managers
         public LogicLayer.Models.ExternalClient GetExternalClient()
         {
             ServicesLayer.Models.ExternalClient externalClientFromService = _externalClientService.GetClientServiceAsync().Result;
-
             return new LogicLayer.Models.ExternalClient()
             {
                 street_name = "Bergnaum Branch",
                 Id = externalClientFromService.id,
                 FirstName = externalClientFromService.first_name,
                 LastName = externalClientFromService.last_name,
-                Roles = "Starter",
+                plan = "3",
                 PhoneNumber = externalClientFromService.phone_number
             };
+        }
+
+        private int genRanking(LogicLayer.Models.ExternalClient client)
+        {
+            
+            if(client.plan == "Basic"){
+
+                return 1;
+            }else if(client.plan == "Professional")
+            {
+                return 5;
+            }
+            return 3 ;
         }
     }
 }

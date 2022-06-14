@@ -12,8 +12,8 @@ namespace LogicLayer.Models
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string street_name { get; set; }
-        public string Roles { get; set; }
-
-        public string PhoneNumber { get; set; }
+        public string plan { get; set; }
+        public int PhoneNumber { get; set; }
     }
-}
+       
+ }
