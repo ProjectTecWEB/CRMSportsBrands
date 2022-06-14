@@ -58,5 +58,12 @@ namespace CRMSportsBrands.Controllers
             return Ok(_clientManager.GetExternalClient());
         }
 
+        [HttpPost]
+        [Route("/external-clients")]
+        public IActionResult PostExternalClients([FromBody] LogicLayer.Models.ExternalClient client)
+        {
+            return Ok(_clientManager.PostExternalClient(client));
+        }
+
     }
 }
