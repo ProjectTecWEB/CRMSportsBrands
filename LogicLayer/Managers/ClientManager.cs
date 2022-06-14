@@ -89,11 +89,11 @@ namespace LogicLayer.Managers
             code = client.firstName.Substring(0, 1) + client.firstLastName.Substring(0, 1) + client.secondLastName.Substring(0, 1) + "-" + client.Ci.ToString();
             return code;
         }
-       /* private string genExCode(LogicLayer.Models.ExternalClient client)
+       private string genExCode(LogicLayer.Models.ExternalClient client)
         {
-            code = client.FirstName.Substring(0, 1) + client.LastName.Substring(0, 1) + "-" + client.Ci.ToString();
+            code = client.FirstName.Substring(0, 1) + client.LastName.Substring(0, 1) + "-" + client.Id.ToString();
             return code;
-        }*/
+        }
 
         public LogicLayer.Models.Client UpdateClient(LogicLayer.Models.Client client)
         {
@@ -152,7 +152,7 @@ namespace LogicLayer.Managers
                 Id = externalClientFromService.id,
                 FirstName = externalClientFromService.first_name,
                 LastName = externalClientFromService.last_name,
-                plan = "3",
+                plan = "Professional",
                 PhoneNumber = externalClientFromService.phone_number
 
             };
@@ -166,12 +166,12 @@ namespace LogicLayer.Managers
             DBLayer.Models.Client clientExternalToCreate = new DBLayer.Models.Client()
             {
                 IdClient = genExCode(client),
-                firstId = Guid.NewGuid(),
+                Id = Guid.NewGuid(),
                 firstName = client.FirstName,
                 secondName = "",
                 firstLastName = client.LastName,
                 secondLastName = "",
-                Id = client.Id,
+                Ci = client.Id,
                 Address = client.street_name,
                 PhoneNumber = client.PhoneNumber,
                 Ranking = genRanking(client)
@@ -181,13 +181,13 @@ namespace LogicLayer.Managers
             _uow.Save();
             return new LogicLayer.Models.Client()
             {
-                firstId = clientExternalToCreate.firstId,
+                Id = clientExternalToCreate.Id,
                 IdClient = clientExternalToCreate.IdClient,
                 firstName = clientExternalToCreate.firstName,
                 secondName = clientExternalToCreate.secondName,
                 firstLastName = clientExternalToCreate.firstLastName,
                 secondLastName = clientExternalToCreate.secondLastName,
-                Id = clientExternalToCreate.Id,
+                Ci = clientExternalToCreate.Ci,
 
                 Address = clientExternalToCreate.Address,
                 PhoneNumber = clientExternalToCreate.PhoneNumber,
@@ -206,7 +206,7 @@ namespace LogicLayer.Managers
                 return 5;
             }
             return 3 ;
-        }*/
+        }
     }
 }
 

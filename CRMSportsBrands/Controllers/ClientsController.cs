@@ -53,11 +53,7 @@ namespace CRMSportsBrands.Controllers
         [Route("clients")]
         public IActionResult DeleteClients([FromBody] LogicLayer.Models.Client client)
         {
-            if(_clientManager.DeleteClient(client) ==null)
-            {
-                elog.Add("No se pudo realizar el delete");
-                return NotFound("El id ingresado no esta asociado a ningun cliente");
-            }
+          
             return Ok(_clientManager.DeleteClient(client));
         }
 
@@ -67,6 +63,13 @@ namespace CRMSportsBrands.Controllers
         {
             
          return Ok(_clientManager.GetExternalClient());
+        }
+
+        [HttpPost]
+        [Route("/external-clients")]
+        public IActionResult PostExternalClients([FromBody] LogicLayer.Models.ExternalClient client)
+        {
+            return Ok(_clientManager.PostExternalClient(client));
         }
 
     }
