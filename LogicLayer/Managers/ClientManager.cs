@@ -81,7 +81,7 @@ namespace LogicLayer.Managers
 
         private string genCode(LogicLayer.Models.Client client)
         {
-            code = client.firstName.Substring(0,1) + client.firstLastName.Substring(0,1)+ client.secondLastName.Substring(0,1)+"-"+client.Id.ToString();
+            code = client.firstName.Substring(0, 1) + client.firstLastName.Substring(0, 1) + client.secondLastName.Substring(0, 1) + "-" + client.Id.ToString();
             return code;
         }
 
@@ -134,19 +134,18 @@ namespace LogicLayer.Managers
         public LogicLayer.Models.ExternalClient GetExternalClient()
         {
             ServicesLayer.Models.ExternalClient externalClientFromService = _externalClientService.GetClientServiceAsync().Result;
-                
-                return new LogicLayer.Models.ExternalClient()
-                {
-                    Id = externalClientFromService.id,
-                    FirstName = externalClientFromService.first_name,
-                    LastName = externalClientFromService.last_name,
-                    Roles = externalClientFromService.Roles,
-                    phone_number = externalClientFromService.phone_number
+            return new LogicLayer.Models.ExternalClient()
+            {
+                Id = externalClientFromService.id,
+                FirstName = externalClientFromService.first_name,
+                LastName = externalClientFromService.last_name,
+                street_name = externalClientFromService.street_name,
+                phone_number = externalClientFromService.phone_number
+            };
 
-                };
-       
+    
+  
         }
-     
     }
 }
 
