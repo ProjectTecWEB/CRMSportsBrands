@@ -8,7 +8,7 @@ namespace DBLayer.Models
 {
     public class Entity
     {
-        public Guid firstId { get; set; }
+        public Guid Id { get; set; }
         
     }
 }

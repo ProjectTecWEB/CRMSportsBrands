@@ -31,7 +31,7 @@ namespace DBLayer.Repositories
 
         public Client GetById(Guid firstid)
         {
-            return _context.Set<Client>().Find();
+            return _context.Set<Client>().Find(firstid);
         }
 
         public Client UpdateClient(Client client)
