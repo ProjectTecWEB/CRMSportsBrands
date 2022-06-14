@@ -180,7 +180,20 @@ namespace LogicLayer.Managers
             };
         }
 
+        private int genRanking(LogicLayer.Models.ExternalClient client)
+        {
 
+            if (client.plan == "Basic")
+            {
+
+                return 1;
+            }
+            else if (client.plan == "Professional")
+            {
+                return 5;
+            }
+            return 3;
+        }
 
     }
 }
