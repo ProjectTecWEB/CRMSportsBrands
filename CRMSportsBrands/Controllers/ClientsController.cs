@@ -14,15 +14,19 @@ namespace CRMSportsBrands.Controllers
     public class ClientsController : ControllerBase
     {
         private ClientManager _clientManager;
+        public Log elog; 
         public ClientsController(ClientManager clientManager)
         {
             _clientManager = clientManager;
+            elog = new Log(@"S:\TecWeb\proyecto3\CRMSportsBrands\");
         }
         [HttpGet]
         [Route("clients")]
         public IActionResult GetClients()
         {
+            elog.Add("Se obtuvo un get");
             return Ok(_clientManager.GetClients());
+            
         }
         [HttpPost]
         [Route("clients")]
@@ -40,7 +44,8 @@ namespace CRMSportsBrands.Controllers
             }
             else
             {
-                return NotFound();
+                elog.Add("No se pudo realizar el Update");
+                return NotFound("El id ingresado no esta asociado a ningun cliente");
             }
 
         }
@@ -48,14 +53,20 @@ namespace CRMSportsBrands.Controllers
         [Route("clients")]
         public IActionResult DeleteClients([FromBody] LogicLayer.Models.Client client)
         {
+            if(_clientManager.DeleteClient(client) ==null)
+            {
+                elog.Add("No se pudo realizar el delete");
+                return NotFound("El id ingresado no esta asociado a ningun cliente");
+            }
             return Ok(_clientManager.DeleteClient(client));
         }
 
-        [HttpGet]
+       [HttpGet]
         [Route("external-client")]
         public IActionResult GetExternalClient()
         {
-            return Ok(_clientManager.GetExternalClient());
+            
+         return Ok(_clientManager.GetExternalClient());
         }
 
     }

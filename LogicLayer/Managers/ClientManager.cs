@@ -33,12 +33,12 @@ namespace LogicLayer.Managers
                 mappedClients.Add(new LogicLayer.Models.Client()
                 {
                     IdClient = client.IdClient,
-                    firstId = client.firstId,
+                    Id = client.Id,
                     firstName = client.firstName,
                     secondName = client.secondName,
                     firstLastName = client.firstLastName,
                     secondLastName = client.secondLastName,
-                    Id = client.Id,
+                    Ci = client.Ci,
                     Address = client.Address,
                     PhoneNumber = client.PhoneNumber,
                     Ranking = client.Ranking,
@@ -55,12 +55,12 @@ namespace LogicLayer.Managers
             DBLayer.Models.Client clientToCreate = new DBLayer.Models.Client()
             {
                 IdClient = genCode(client),
-                firstId = Guid.NewGuid(),
+                Id = Guid.NewGuid(),
                 firstName = client.firstName,
                 secondName = client.secondName,
                 firstLastName = client.firstLastName,
                 secondLastName = client.secondLastName,
-                Id = client.Id,
+                Ci = client.Ci,
                 Address = client.Address,
                 PhoneNumber = client.PhoneNumber,
                 Ranking = client.Ranking
@@ -70,13 +70,13 @@ namespace LogicLayer.Managers
             _uow.Save();
             return new LogicLayer.Models.Client()
             {
-                firstId = clientToCreate.firstId,
+                Id = clientToCreate.Id,
                 IdClient = clientToCreate.IdClient,
                 firstName = clientToCreate.firstName,
                 secondName = clientToCreate.secondName,
                 firstLastName = clientToCreate.firstLastName,
                 secondLastName = clientToCreate.secondLastName,
-                Id = clientToCreate.Id,
+                Ci = clientToCreate.Ci,
                
                 Address = clientToCreate.Address,
                 PhoneNumber = clientToCreate.PhoneNumber,
@@ -86,23 +86,23 @@ namespace LogicLayer.Managers
 
         private string genCode(LogicLayer.Models.Client client)
         {
-            code = client.firstName.Substring(0, 1) + client.firstLastName.Substring(0, 1) + client.secondLastName.Substring(0, 1) + "-" + client.Id.ToString();
+            code = client.firstName.Substring(0, 1) + client.firstLastName.Substring(0, 1) + client.secondLastName.Substring(0, 1) + "-" + client.Ci.ToString();
             return code;
         }
-        private string genExCode(LogicLayer.Models.ExternalClient client)
+       /* private string genExCode(LogicLayer.Models.ExternalClient client)
         {
-            code = client.FirstName.Substring(0, 1) + client.LastName.Substring(0, 1) + "-" + client.Id.ToString();
+            code = client.FirstName.Substring(0, 1) + client.LastName.Substring(0, 1) + "-" + client.Ci.ToString();
             return code;
-        }
+        }*/
 
         public LogicLayer.Models.Client UpdateClient(LogicLayer.Models.Client client)
         {
-            DBLayer.Models.Client clientToUpdate = _uow.ClientRepository.GetById(client.firstId);
+            DBLayer.Models.Client clientToUpdate = _uow.ClientRepository.GetById(client.Id);
             clientToUpdate.firstName = client.firstName;
             clientToUpdate.secondName = client.secondName;
             clientToUpdate.firstLastName = client.firstLastName;
             clientToUpdate.secondLastName = client.secondLastName;
-            clientToUpdate.Id = client.Id;
+            clientToUpdate.IdClient = genCode(client);
             clientToUpdate.Address = client.Address;
             clientToUpdate.PhoneNumber = client.PhoneNumber;
             clientToUpdate.Ranking = client.Ranking;
@@ -116,8 +116,8 @@ namespace LogicLayer.Managers
                 secondName = clientToUpdate.secondName,
                 firstLastName = clientToUpdate.firstLastName,
                 secondLastName = clientToUpdate.secondLastName,
+                Ci = clientToUpdate.Ci,
                 Id = clientToUpdate.Id,
-                firstId = clientToUpdate.firstId,
                 Address = clientToUpdate.Address,
                 PhoneNumber = clientToUpdate.PhoneNumber,
                 Ranking = clientToUpdate.Ranking
@@ -125,17 +125,18 @@ namespace LogicLayer.Managers
         }
         public LogicLayer.Models.Client DeleteClient(LogicLayer.Models.Client client)
         {
-            DBLayer.Models.Client clientToDelete = _uow.ClientRepository.GetById(client.firstId);
+            DBLayer.Models.Client clientToDelete = _uow.ClientRepository.GetById(client.Id);
             _uow.ClientRepository.DeleteClient(clientToDelete);
             _uow.Save();
             return new LogicLayer.Models.Client()
             {
+                Id = clientToDelete.Id,
                 IdClient = clientToDelete.IdClient,
                 firstName = clientToDelete.firstName,
                 secondName = clientToDelete.secondName,
                 firstLastName = clientToDelete.firstLastName,
                 secondLastName = clientToDelete.secondLastName,
-                Id = clientToDelete.Id,
+                Ci = clientToDelete.Ci,
                 Address = clientToDelete.Address,
                 PhoneNumber = clientToDelete.PhoneNumber,
                 Ranking = clientToDelete.Ranking
@@ -205,7 +206,7 @@ namespace LogicLayer.Managers
                 return 5;
             }
             return 3 ;
-        }
+        }*/
     }
 }
 

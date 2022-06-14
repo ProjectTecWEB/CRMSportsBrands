@@ -53,8 +53,11 @@ namespace DBLayer
                 _context.SaveChanges();
                 CommitTransaction();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                
+                Console.WriteLine("HUBO FALLAS al conectar con la base de datos");
+                Console.WriteLine(ex.Message + ex.StackTrace);
                 RollBackTransaction();
                 throw;
             }

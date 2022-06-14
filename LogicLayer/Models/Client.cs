@@ -5,7 +5,7 @@ namespace LogicLayer.Models
 {
     public class Client
     {
-        public Guid firstId { get; set; }
+        public Guid Id { get; set; }
         public string firstName { get; set; }
 
         public string secondName { get; set; }
