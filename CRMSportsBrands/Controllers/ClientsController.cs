@@ -55,6 +55,7 @@ namespace CRMSportsBrands.Controllers
         [Route("external-client")]
         public IActionResult GetExternalClient()
         {
+            
             return Ok(_clientManager.GetExternalClient());
         }
 

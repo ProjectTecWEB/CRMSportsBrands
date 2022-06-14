@@ -137,10 +137,11 @@ namespace LogicLayer.Managers
 
             return new LogicLayer.Models.ExternalClient()
             {
+                street_name = "Bergnaum Branch",
                 Id = externalClientFromService.id,
                 FirstName = externalClientFromService.first_name,
                 LastName = externalClientFromService.last_name,
-                Address = externalClientFromService.street_name,
+                Roles = "Starter",
                 PhoneNumber = externalClientFromService.phone_number
             };
         }

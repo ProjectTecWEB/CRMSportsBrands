@@ -18,7 +18,7 @@ namespace ServicesLayer.Services
                 Console.WriteLine("Pidiendo la información del cliente");
                 using (HttpClient client = new HttpClient())
                 {
-                    string URL = "https://random-data-api.com/api/users/random_user?size=10";
+                    string URL = "https://random-data-api.com/api/users/random_user?";
 
                     HttpResponseMessage response = await client.GetAsync(URL);
                     if (response.IsSuccessStatusCode)
