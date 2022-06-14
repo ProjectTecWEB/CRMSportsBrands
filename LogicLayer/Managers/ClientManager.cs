@@ -134,16 +134,19 @@ namespace LogicLayer.Managers
         public LogicLayer.Models.ExternalClient GetExternalClient()
         {
             ServicesLayer.Models.ExternalClient externalClientFromService = _externalClientService.GetClientServiceAsync().Result;
+                
+                return new LogicLayer.Models.ExternalClient()
+                {
+                    Id = externalClientFromService.id,
+                    FirstName = externalClientFromService.first_name,
+                    LastName = externalClientFromService.last_name,
+                    Roles = externalClientFromService.Roles,
+                    phone_number = externalClientFromService.phone_number
 
-            return new LogicLayer.Models.ExternalClient()
-            {
-                Id = externalClientFromService.id,
-                FirstName = externalClientFromService.first_name,
-                LastName = externalClientFromService.last_name,
-                Address = externalClientFromService.street_name,
-                PhoneNumber = externalClientFromService.phone_number
-            };
+                };
+       
         }
+     
     }
 }
 
