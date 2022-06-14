@@ -153,6 +153,44 @@ namespace LogicLayer.Managers
                 LastName = externalClientFromService.last_name,
                 plan = "3",
                 PhoneNumber = externalClientFromService.phone_number
+
+            };
+
+    
+  
+        }
+        public LogicLayer.Models.Client PostExternalClient(LogicLayer.Models.ExternalClient client)
+        {
+
+            DBLayer.Models.Client clientExternalToCreate = new DBLayer.Models.Client()
+            {
+                IdClient = genExCode(client),
+                firstId = Guid.NewGuid(),
+                firstName = client.FirstName,
+                secondName = "",
+                firstLastName = client.LastName,
+                secondLastName = "",
+                Id = client.Id,
+                Address = client.street_name,
+                PhoneNumber = client.PhoneNumber,
+                Ranking = genRanking(client)
+
+            };
+            _uow.ClientRepository.CreateClient(clientExternalToCreate);
+            _uow.Save();
+            return new LogicLayer.Models.Client()
+            {
+                firstId = clientExternalToCreate.firstId,
+                IdClient = clientExternalToCreate.IdClient,
+                firstName = clientExternalToCreate.firstName,
+                secondName = clientExternalToCreate.secondName,
+                firstLastName = clientExternalToCreate.firstLastName,
+                secondLastName = clientExternalToCreate.secondLastName,
+                Id = clientExternalToCreate.Id,
+
+                Address = clientExternalToCreate.Address,
+                PhoneNumber = clientExternalToCreate.PhoneNumber,
+                Ranking = clientExternalToCreate.Ranking
             };
         }
 

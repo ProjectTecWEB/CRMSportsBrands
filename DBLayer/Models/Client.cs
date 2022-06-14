@@ -16,9 +16,9 @@ namespace DBLayer.Models
 
         public string secondLastName { get; set; }
 
-        public int Id { get; set; }
+        public string Id { get; set; }
         public string Address { get; set; }
-        public int PhoneNumber { get; set; }
+        public string PhoneNumber { get; set; }
         public int Ranking { get; set; }
        
 

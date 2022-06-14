@@ -13,7 +13,7 @@ namespace LogicLayer.Models
         public string LastName { get; set; }
         public string street_name { get; set; }
         public string plan { get; set; }
-        public int PhoneNumber { get; set; }
+        public string PhoneNumber { get; set; }
     }
        
  }
